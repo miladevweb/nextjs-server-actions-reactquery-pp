@@ -1,0 +1,168 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+body {
+   color: white;
+}
+h1 {
+   font-weight: 900;
+   text-transform: uppercase;
+   font-size: 2rem;
+   line-height: 90%;
+   cursor: pointer;
+   margin-bottom: 10px;
+   text-align: center;
+}
+h2 {
+   font-weight: 700;
+   font-size: 0.8rem;
+   text-transform: uppercase;
+   line-height: 90%;
+   cursor: pointer;
+   margin-top: -10px;
+   margin-bottom: 10px;
+   text-align: center;
+}
+ul {
+   list-style: none;
+}
+.background {
+   inset: 0;
+   z-index: -1;
+   position: fixed;
+   background-image: radial-gradient(circle at 120% 120%, hsl(246, 55%, 23%), hsl(245, 100%, 5%));
+}
+.main-container {
+   width: 100vw;
+   height: 100vh;
+   display: grid;
+   place-items: center;
+}
+.loading {
+   width: 100%;
+   height: 100%;
+   background-color: white;
+   animation-name: pulse;
+   animation-duration: 1500ms;
+   animation-fill-mode: forwards;
+   animation-timing-function: ease-in;
+   animation-iteration-count: infinite;
+   border-radius: 10px;
+}
+@keyframes pulse {
+   50% {
+      background-color: rgb(175, 175, 175);
+   }
+   100% {
+      background-color: white;
+   }
+}
+.spin {
+   animation-name: loading;
+   animation-timing-function: linear;
+   animation-iteration-count: infinite;
+   animation-duration: 1s;
+}
+@keyframes loading {
+   to {
+      transform: rotate(360deg);
+   }
+}
+
+.container {
+   margin-inline: auto;
+   height: 90vh;
+   width: 80vw;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   grid-template-rows: 1fr 1fr 1fr 1fr;
+   gap: 15px 20px;
+   grid-auto-flow: row;
+   grid-template-areas:
+      'infinite sync form'
+      'infinite sync form'
+      'infinite async form'
+      'infinite async form';
+   & > div {
+      border-radius: 10px;
+      background-color: hsl(246, 55%, 23%);
+      &::-webkit-scrollbar {
+         width: 8px;
+      }
+      &::-webkit-scrollbar-thumb {
+         background-color: white; /* scrollbar */
+         border-radius: 10px;
+      }
+      &::-webkit-scrollbar-track {
+         background-color: transparent; /* scrollbar background */
+      }
+      & > section {
+         padding-block: 20px;
+         padding-inline: 25px;
+      }
+   }
+}
+
+.infinite {
+   grid-area: infinite;
+   overflow-y: auto;
+   font-size: 20px;
+}
+.sync {
+   grid-area: sync;
+   padding-block: 20px;
+   padding-inline: 25px;
+}
+.async {
+   grid-area: async;
+   font-size: 20px;
+}
+.form {
+   grid-area: form;
+}
+input {
+   width: 100%;
+   padding-block: 5px;
+   padding-inline: 8px;
+   border-radius: 5px;
+   outline: none;
+}
+input:focus {
+   outline: hsl(246, 59%, 65%) solid 5px;
+   outline-offset: -2px;
+}
+form > div {
+   display: grid;
+   place-items: center;
+   margin-top: 5px;
+   & button {
+      width: 50%;
+      border-radius: 5px;
+      padding-block: 3px;
+      color: white;
+      font-weight: 500;
+      font-size: 14px;
+      margin-top: 4px;
+      cursor: pointer;
+      background-image: linear-gradient(to right, hsl(245, 66%, 16%), hsl(244, 84%, 10%));
+
+      &.disabled {
+         opacity: 30%;
+         cursor: initial;
+      }
+   }
+}
+form .error-message {
+   color: tomato;
+   margin-block: 7px;
+}
+.zero-posts {
+   color: tomato;
+   margin-block: 7px;
+   text-align: center;
+}
+.new-posts {
+   font-size: 20px;
+}
